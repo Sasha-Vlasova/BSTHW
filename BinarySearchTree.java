@@ -11,6 +11,7 @@ import org.w3c.dom.Node;
 //    - "extends Comparable<T>" is a constraint that requires T to implement the Comparable interface
 //    - This ensures that objects of type T can be compared to each other using compareTo()
 //    - This is necessary for a BST because we need to order elements (left < parent < right)
+
 public class BinarySearchTree<T extends Comparable<T>> implements BSTInterface<T>{
     protected BSTNode<T> root;
     // 2. A Comparator is an interface from java.util that defines how to compare two objects
@@ -32,6 +33,8 @@ public class BinarySearchTree<T extends Comparable<T>> implements BSTInterface<T
         //    - Defining the compare() method inline to use the object's natural ordering
         //    - This implementation simply delegates to the compareTo() method from Comparable
         //    - This provides a default comparison strategy when no custom Comparator is provided
+        
+        
         comp = new Comparator<T>(){
             public int compare(T element1, T element2){
                 return ((Comparable<T>)element1).compareTo(element2);
@@ -321,30 +324,56 @@ public class BinarySearchTree<T extends Comparable<T>> implements BSTInterface<T
     the max depth.
     */
     public int maxDepth() {
-        //return(maxDepth(root));
-        return 0;
+        // worst case if root = null
+        if (root == null)
+            return 0;
+        
+        return(maxDepth(root));      
+        //return 0; --- should I still consider the case of null as a root?
     }
-    private int maxDepth(Node node) {
-        return 0;
+    
+    private int maxDepth(BSTNode<T> node) { // should be BSTNode<T> data type?
+        if (node == null) {
+            return 0;
+        } // worse case if tree is "empty"
+        else
+        {
+            int leftDepth = 1 + maxDepth(node.getLeft()); // collecting left depth
+            int rightDepth = 1 + maxDepth(node.getRight());
+            if (leftDepth > rightDepth) 
+                return leftDepth;
+            else 
+                return rightDepth; 
+        }        
     }
 
-    //TODO: 
+    //TODO:  
     /**
      Returns the min value in a non-empty binary search tree.
     Uses a helper method that iterates to the left to find
     the min value.
     */
-    public int minValue() {
-        //return( minValue(root) );
-        return 0;
+    public T minValue() {
+        if (root == null)
+            return null;
+        return( minValue(root) );
     }
 
     
-    private int minValue(Node node) {
-       return 0;
+    private T minValue(BSTNode<T> node) { 
+        //having null (worst case)
+        if (node == null)
+            return null;
+        else{
+            if (node.getLeft() == null) // we are at the base case -- reach the end of the left side of the tree
+                return node.getInfo(); // node is the smallest thing since it is the last thing on the left 
+            // --- ask about the return value 
+            else
+                return minValue(node.getLeft());
+        }
     }
 
-    //TODO:
+    //TODO:                  // I NEED SOME CLARIFICATION -> DRAW PICTURE ON WHAT RESULT DR. JACK WANTS
 
         /**
      Changes the tree by inserting a duplicate node

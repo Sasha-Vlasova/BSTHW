@@ -1,4 +1,4 @@
-public class BSTNode<T> {
+public class BSTNode<T> { // ask about Node again and also about "{}"
     private T info;
     private BSTNode<T> left;
     private BSTNode<T> right;
