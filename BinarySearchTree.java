@@ -396,7 +396,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements BSTInterface<T
 
     Uses a recursive helper to recur over the tree
     and insert the duplicates.
-    */
+    
     public void doubleTree() {
         if (root == null)
             System.out.println("There is no tree..");
@@ -405,7 +405,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements BSTInterface<T
     private void doubleTree(Node node) {
     
     }
-
+*/
     //TODO:
     /*
     Compares the receiver to another tree to
