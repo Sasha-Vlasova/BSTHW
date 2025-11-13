@@ -21,7 +21,7 @@ public class Main {
         System.out.println("Size: " + bst.size());
         System.out.println("Is Empty: " + bst.isEmpty());
         System.out.println("Min: " + bst.min());
-        System.out.println("CHECK - 2nd WAY: " + bst.minValue());
+        System.out.println("CHECK - 2nd WAY: " + bst.minValue(70));/// works! but why do we need it if we already have min method?
         System.out.println("Max: " + bst.max());
         System.out.println("Is Balanced: " + bst.isBalanced());
         System.out.println();

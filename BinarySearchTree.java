@@ -353,20 +353,20 @@ public class BinarySearchTree<T extends Comparable<T>> implements BSTInterface<T
     Uses a helper method that iterates to the left to find
     the min value.
     */
-    public T minValue() {
+    public int minValue() {
         if (root == null)
-            return null;
-        return( minValue(root) );
+            return 0;
+        return((int) minValue(root) );
     }
 
     
-    private T minValue(BSTNode<T> node) { 
+    private int minValue(BSTNode<T> node) { 
         //having null (worst case)
         if (node == null)
-            return null;
+            return 0;
         else{
             if (node.getLeft() == null) // we are at the base case -- reach the end of the left side of the tree
-                return node.getInfo(); // node is the smallest thing since it is the last thing on the left 
+                return (int)node.getInfo(); // node is the smallest thing since it is the last thing on the left 
             // --- ask about the return value 
             else
                 return minValue(node.getLeft());
@@ -375,7 +375,7 @@ public class BinarySearchTree<T extends Comparable<T>> implements BSTInterface<T
 
     //TODO:                  // I NEED SOME CLARIFICATION -> DRAW PICTURE ON WHAT RESULT DR. JACK WANTS
 
-        /**
+        /*
      Changes the tree by inserting a duplicate node
     on each nodes's .left.
     
@@ -398,7 +398,9 @@ public class BinarySearchTree<T extends Comparable<T>> implements BSTInterface<T
     and insert the duplicates.
     */
     public void doubleTree() {
-        
+        if (root == null)
+            System.out.println("There is no tree..");
+        else 
     }
     private void doubleTree(Node node) {
     
