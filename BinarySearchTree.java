@@ -401,8 +401,9 @@ public class BinarySearchTree<T extends Comparable<T>> implements BSTInterface<T
     }
     private void doubleTree(BSTNode<T> node) {
         //having null (worst case)
-        if (node == null)
+        if (node == null){
             System.out.println("There is no tree to show");
+            return;}
         else{
             BSTNode<T> oldvalue = node.getLeft();
             BSTNode<T> copy = new BSTNode<>(node.getInfo());
@@ -420,12 +421,38 @@ public class BinarySearchTree<T extends Comparable<T>> implements BSTInterface<T
     see if they are structurally identical.
     */
     public boolean sameTree(BinarySearchTree<T> other) {
-        //return( sameTree(root, other.root));
-        return false;
+// Q: do we assume that if both of "trees" are empty they are equal? if so then we want to say:
+        if (root == null && other.isEmpty() == true)
+            return true; // both empty, thus equal..? 
+
+        if (root == null || other.isEmpty() == true)
+            return false; // only one of them null, thus cannot be equal -> false
+
+        
+        return(sameTree(root, other.root));  //Q: ask why do we allow to do .root???? -> and what that actually means (behind the scene)
+        //return false;
     }
 
-    boolean sameTree(Node a, Node b) {
-        return false;
+    public boolean sameTree(BSTNode<T> nodeA, BSTNode<T> nodeB) {
+        if (nodeA==null || nodeB == null) 
+                return false;
+        else {
+            if (nodeA.getInfo() == nodeB.getInfo())
+            {
+                if (nodeA.getLeft() == null && nodeB.getLeft() == null 
+                    && nodeA.getRight() == null && nodeB.getRight() == null)
+                    return true; // we are at the end of trees  -- base case
+                if (nodeA.getLeft() != null && nodeB.getLeft() != null){
+                    sameTree(nodeA.getLeft(), nodeB.getLeft());
+                }
+                if (nodeA.getRight() != null && nodeB.getRight() != null){
+                    sameTree(nodeA.getRight(), nodeB.getRight());
+                }
+                return false;
+            }
+            else 
+                return false; // the first time we found not equal values we can claim that trees are not equal/ identical
+        }
     }
 
 }

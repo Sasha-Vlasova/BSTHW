@@ -42,9 +42,6 @@ public class Main {
         
         // Test traversals
         System.out.println("=== Test 4: Traversals ===");
-        
-        // Test my code of Duplication
-        bst.doubleTree();
 
 
         System.out.print("Inorder (should be sorted): ");
@@ -86,5 +83,11 @@ public class Main {
             System.out.print(afterRemove.next() + " ");
         }
         System.out.println("\n");
+        
+
+        // test TODO-2:  Duplication
+        bst.doubleTree();
+    
+    
     }
 }
