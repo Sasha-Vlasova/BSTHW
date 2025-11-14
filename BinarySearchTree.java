@@ -214,6 +214,15 @@ public class BinarySearchTree<T extends Comparable<T>> implements BSTInterface<T
         return getIterator(BSTInterface.Traversal.InOrder);
     }
 
+    // I am adding  to simplify my code in main:
+    public Iterator<T> preorderIterator(){
+        return getIterator(BSTInterface.Traversal.PreOrder);
+    }
+
+    public Iterator<T> postorderIterator(){
+        return getIterator(BSTInterface.Traversal.PreOrder);
+    }
+
     private BSTNode<T> recAdd(T element, BSTNode<T> node){
         if(node==null){
             return new BSTNode<T>(element);
@@ -402,7 +411,6 @@ public class BinarySearchTree<T extends Comparable<T>> implements BSTInterface<T
     private void doubleTree(BSTNode<T> node) {
         //having null (worst case)
         if (node == null){
-            System.out.println("There is no tree to show");
             return;}
         else{
             BSTNode<T> oldvalue = node.getLeft();
@@ -421,18 +429,31 @@ public class BinarySearchTree<T extends Comparable<T>> implements BSTInterface<T
     see if they are structurally identical.
     */
     public boolean sameTree(BinarySearchTree<T> other) {
-// Q: do we assume that if both of "trees" are empty they are equal? if so then we want to say:
-        if (root == null && other.isEmpty() == true)
-            return true; // both empty, thus equal..? 
 
-        if (root == null || other.isEmpty() == true)
-            return false; // only one of them null, thus cannot be equal -> false
+
+
+    // Q: do we assume that if both of "trees" are empty they are equal? if so then we want to say:
+        
 
         
-        return(sameTree(root, other.root));  //Q: ask why do we allow to do .root???? -> and what that actually means (behind the scene)
+        if (root == null && other.isEmpty() == true)
+            return true; // both empty, thus equal..? 
+        if (root == null || other.isEmpty() == true)
+            return false; // only one of them null, thus cannot be equal -> false        
+        return(sameTree(root, other.root));  
+        
+        
+        
+        
+        //Q: ask why do we allow to do .root???? -> and what that actually means (behind the scene)
+        
+        
+        
+        
+        
+        
         //return false;
     }
-
     public boolean sameTree(BSTNode<T> nodeA, BSTNode<T> nodeB) {
         if (nodeA==null || nodeB == null) 
                 return false;
@@ -443,16 +464,21 @@ public class BinarySearchTree<T extends Comparable<T>> implements BSTInterface<T
                     && nodeA.getRight() == null && nodeB.getRight() == null)
                     return true; // we are at the end of trees  -- base case
                 if (nodeA.getLeft() != null && nodeB.getLeft() != null){
-                    sameTree(nodeA.getLeft(), nodeB.getLeft());
+                    return sameTree(nodeA.getLeft(), nodeB.getLeft());
                 }
                 if (nodeA.getRight() != null && nodeB.getRight() != null){
-                    sameTree(nodeA.getRight(), nodeB.getRight());
+                    return sameTree(nodeA.getRight(), nodeB.getRight());
                 }
                 return false;
             }
             else 
                 return false; // the first time we found not equal values we can claim that trees are not equal/ identical
         }
+
+
+        // Q: should I test comparator? (it was already a part of given code..) Can we in general talk about Comparator?
+
+        
     }
 
 }
