@@ -404,20 +404,13 @@ public class BinarySearchTree<T extends Comparable<T>> implements BSTInterface<T
         if (node == null)
             System.out.println("There is no tree to show");
         else{
-            
-
-
-            if (node.getLeft() == null){
-                node.setLeft(node); // duplicate the last one
-            }// we are at the base case 
-            else{
-            recAdd(node.getInfo(), node); // we added the duplicate, no it is at the right end, right side (except the case when the previous number where the same then it is on the right end but left side)
-            doubleTree(node.getLeft());
+            BSTNode<T> oldvalue = node.getLeft();
+            BSTNode<T> copy = new BSTNode<>(node.getInfo());
+            copy.setLeft(oldvalue);
+            node.setLeft(copy);
+            doubleTree(oldvalue);
             doubleTree(node.getRight());
-            }
         }
-
-            
     
     }
 
