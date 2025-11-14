@@ -16,12 +16,14 @@ public class Main {
         bst.add(40);
         bst.add(60);
         bst.add(80);
+
+        
         
         // Test basic properties
         System.out.println("Size: " + bst.size());
         System.out.println("Is Empty: " + bst.isEmpty());
         System.out.println("Min: " + bst.min());
-        System.out.println("CHECK - 2nd WAY: " + bst.minValue(70));/// works! but why do we need it if we already have min method?
+        System.out.println("CHECK: " + bst.minValue()); // checking my code?
         System.out.println("Max: " + bst.max());
         System.out.println("Is Balanced: " + bst.isBalanced());
         System.out.println();
@@ -41,6 +43,10 @@ public class Main {
         // Test traversals
         System.out.println("=== Test 4: Traversals ===");
         
+        // Test my code of Duplication
+        bst.doubleTree();
+
+
         System.out.print("Inorder (should be sorted): ");
     Iterator<Integer> inorder = bst.getIterator(BSTInterface.Traversal.InOrder);
         while(inorder.hasNext()){
@@ -48,6 +54,7 @@ public class Main {
         }
         System.out.println();
         
+
         System.out.print("Preorder: ");
     Iterator<Integer> preorder = bst.getIterator(BSTInterface.Traversal.PreOrder);
         while(preorder.hasNext()){

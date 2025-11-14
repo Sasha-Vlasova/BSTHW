@@ -356,10 +356,8 @@ public class BinarySearchTree<T extends Comparable<T>> implements BSTInterface<T
     public int minValue() {
         if (root == null)
             return 0;
-        return((int) minValue(root) );
+        return(minValue(root));
     }
-
-    
     private int minValue(BSTNode<T> node) { 
         //having null (worst case)
         if (node == null)
@@ -367,15 +365,13 @@ public class BinarySearchTree<T extends Comparable<T>> implements BSTInterface<T
         else{
             if (node.getLeft() == null) // we are at the base case -- reach the end of the left side of the tree
                 return (int)node.getInfo(); // node is the smallest thing since it is the last thing on the left 
-            // --- ask about the return value 
             else
                 return minValue(node.getLeft());
         }
-    }
+    } // this works for root yes, but then why do I need this code if I can use min()??
 
-    //TODO:                  // I NEED SOME CLARIFICATION -> DRAW PICTURE ON WHAT RESULT DR. JACK WANTS
-
-        /*
+    //TODO:
+    /*
      Changes the tree by inserting a duplicate node
     on each nodes's .left.
     
@@ -396,16 +392,35 @@ public class BinarySearchTree<T extends Comparable<T>> implements BSTInterface<T
 
     Uses a recursive helper to recur over the tree
     and insert the duplicates.
-    
+    */
     public void doubleTree() {
         if (root == null)
             System.out.println("There is no tree..");
         else 
+            doubleTree(root);
     }
-    private void doubleTree(Node node) {
+    private void doubleTree(BSTNode<T> node) {
+        //having null (worst case)
+        if (node == null)
+            System.out.println("There is no tree to show");
+        else{
+            
+
+
+            if (node.getLeft() == null){
+                node.setLeft(node); // duplicate the last one
+            }// we are at the base case 
+            else{
+            recAdd(node.getInfo(), node); // we added the duplicate, no it is at the right end, right side (except the case when the previous number where the same then it is on the right end but left side)
+            doubleTree(node.getLeft());
+            doubleTree(node.getRight());
+            }
+        }
+
+            
     
     }
-*/
+
     //TODO:
     /*
     Compares the receiver to another tree to
